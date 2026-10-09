@@ -1,63 +1,49 @@
-# Azure Landing Zones — Enterprise Terraform Reference
+# Azure Landing Zones — Terraform Reference
 
-[![Terraform](https://img.shields.io/badge/Terraform-1.6+-623CE4?logo=terraform)](https://www.terraform.io/)
-[![Azure](https://img.shields.io/badge/Azure-Landing%20Zones-0078D4?logo=microsoft-azure)](https://azure.microsoft.com/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Maintained](https://img.shields.io/badge/Maintained-Yes-brightgreen.svg)](https://github.com/mhartson310/Azure-Landing-Zones)
+A focused Azure landing-zone implementation demonstrating **hub-and-spoke network design**, reusable Terraform modules, and infrastructure review before deployment.
 
-A practical Terraform reference for designing and deploying enterprise Azure landing zones with reusable modules for networking, governance, policy, and platform structure.
+> **Project status:** Reference implementation. No production deployment or live test result is claimed by this repository.
 
 ## What this demonstrates
 
-- enterprise landing-zone architecture and platform decomposition;
-- reusable Terraform module design;
-- hub-and-spoke networking and shared-services patterns;
-- Azure Policy and management-group governance;
-- deployment planning, IP design, and operational documentation;
-- security and governance decisions that can be reviewed before implementation.
+- Infrastructure architecture decomposed into reusable hub and spoke modules
+- Terraform composition through an example deployment
+- Azure network design, configurable inputs, and output contracts
+- A foundation for security controls, governance, and platform expansion
 
-## What this is
+## Problem
 
-A deployable reference implementation for Azure landing zones aligned to common Cloud Adoption Framework patterns.
+Cloud teams need consistent platform and network foundations rather than one-off resources built in the portal.
 
-The repository is designed to show the **architecture decisions, reusable infrastructure components, and governance structure** behind a landing zone—not just a diagram or one-off template.
+## Architecture and trust boundaries
 
-## 🚀 Quick Start
+The example uses a hub-and-spoke pattern. Review network routing, segmentation, privileged access, and shared-service trust boundaries before adapting it to a real environment.
 
-```bash
-# Clone the repository
-git clone https://github.com/mhartson310/Azure-Landing-Zones.git
-cd Azure-Landing-Zones
+## Implementation
 
-# Deploy a single-region landing zone
-cd examples/single-region
-terraform init
-terraform plan -var-file="production.tfvars"
-terraform apply
-```
+- [Single-region example](examples/single-region/README.md) and [Terraform entry point](examples/single-region/main.tf)
+- [Hub network module](terraform/modules/hub-network)
+- [Spoke network module](terraform/modules/spoke-network)
 
+Review all input variables and expected cost before applying. The repository does **not** presently contain a complete enterprise landing-zone deployment covering every Cloud Adoption Framework capability.
 
-## 📦 What's Included
+## Threats and controls to evaluate
 
-### Terraform Modules
+- Unintended connectivity or lateral movement between spokes
+- Broad permissions on network administration
+- Missing policy and resource-organization guardrails
+- Incomplete logging or change detection
 
-- **[hub-network](terraform/modules/hub-network/)** - Hub VNet with firewall, gateway, shared services
-- **[spoke-network](terraform/modules/spoke-network/)** - Spoke VNet with routing, NSGs, peering
-- **[firewall](terraform/modules/firewall/)** - Azure Firewall with policies and rules
-- **[policy](terraform/modules/policy/)** - Azure Policy baseline for governance
-- **[management-groups](terraform/modules/management-groups/)** - Management group hierarchy
+## Deployment and validation
 
-### Reference Examples
+Start with `terraform fmt -check`, `terraform init`, `terraform validate`, and `terraform plan` inside the example directory. Treat any successful local validation or Azure deployment as new evidence to document; none is asserted here.
 
-- **[Single-Region](examples/single-region/)** - Hub + 3 spokes in one region
-- **[Multi-Region](examples/multi-region/)** - Hub in 2 regions with global peering
-- **[FedRAMP-Ready](examples/fedramp/)** - Compliance-hardened configuration
+## Monitoring
 
-### Documentation
+For security monitoring and response patterns, see the [Zero Trust reference architecture](https://github.com/mhartson310/Azure-Zero-Trust-Reference-Architectures) and [Sentinel detection library](https://github.com/mhartson310/Sentinel-KQL-Library).
 
-- **[Architecture Guide](docs/architecture-guide.md)** - Design decisions and patterns
-- **[IP Planning](docs/ip-planning-guide.md)** - Address space strategy
-- **[Deployment Checklist](docs/deployment-checklist.md)** - Step-by-step implementation
-- **[Cost Estimation](docs/cost-estimation.md)** - Real-world pricing
+## Portfolio connections
 
-## 🏗️ Architecture Overview
+[Secure enterprise RAG](https://github.com/mhartson310/Azure-Secure-Enterprise-RAG) · [FedRAMP control patterns](https://github.com/mhartson310/FedRAMP-Azure-Toolkit) · [Azure cost optimization](https://github.com/mhartson310/Azure-Cost-Optimization-Toolkit)
+
+**Implementation note:** Reference code is supplied as-is. Validate dependencies, security, budget, and Azure resource changes in a disposable environment before production use.
