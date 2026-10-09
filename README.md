@@ -1,17 +1,26 @@
-# Azure Landing Zones - Production Terraform Modules
+# Azure Landing Zones — Enterprise Terraform Reference
 
 [![Terraform](https://img.shields.io/badge/Terraform-1.6+-623CE4?logo=terraform)](https://www.terraform.io/)
 [![Azure](https://img.shields.io/badge/Azure-Landing%20Zones-0078D4?logo=microsoft-azure)](https://azure.microsoft.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Maintained](https://img.shields.io/badge/Maintained-Yes-brightgreen.svg)](https://github.com/mhartson310/Azure-Landing-Zones)
 
-Production-tested Terraform modules for deploying enterprise Azure landing zones. Based on 20+ real deployments for Fortune 500 companies and government agencies.
+A practical Terraform reference for designing and deploying enterprise Azure landing zones with reusable modules for networking, governance, policy, and platform structure.
 
-## 🎯 What This Is
+## What this demonstrates
 
-**Real Terraform code** that deploys production-ready Azure landing zones following Microsoft's Cloud Adoption Framework (CAF) and enterprise best practices.
+- enterprise landing-zone architecture and platform decomposition;
+- reusable Terraform module design;
+- hub-and-spoke networking and shared-services patterns;
+- Azure Policy and management-group governance;
+- deployment planning, IP design, and operational documentation;
+- security and governance decisions that can be reviewed before implementation.
 
-Not another "hello world" example. This is what I actually deploy for clients.
+## What this is
+
+A deployable reference implementation for Azure landing zones aligned to common Cloud Adoption Framework patterns.
+
+The repository is designed to show the **architecture decisions, reusable infrastructure components, and governance structure** behind a landing zone—not just a diagram or one-off template.
 
 ## 🚀 Quick Start
 
@@ -27,7 +36,6 @@ terraform plan -var-file="production.tfvars"
 terraform apply
 ```
 
-**Deploy time:** 45-60 minutes for complete hub-spoke architecture
 
 ## 📦 What's Included
 
@@ -39,7 +47,7 @@ terraform apply
 - **[policy](terraform/modules/policy/)** - Azure Policy baseline for governance
 - **[management-groups](terraform/modules/management-groups/)** - Management group hierarchy
 
-### Production Examples
+### Reference Examples
 
 - **[Single-Region](examples/single-region/)** - Hub + 3 spokes in one region
 - **[Multi-Region](examples/multi-region/)** - Hub in 2 regions with global peering
