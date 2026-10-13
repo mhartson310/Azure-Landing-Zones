@@ -59,7 +59,7 @@ resource "azurerm_subnet" "data" {
   virtual_network_name = azurerm_virtual_network.spoke.name
   address_prefixes     = [var.data_subnet_address_space]
   service_endpoints    = var.service_endpoints
-  
+
   # Data tier typically needs private endpoints
   private_endpoint_network_policies_enabled = false
 }
@@ -164,7 +164,7 @@ resource "azurerm_network_security_group" "data" {
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
-    destination_port_ranges    = ["1433", "3306", "5432"]  # SQL Server, MySQL, PostgreSQL
+    destination_port_ranges    = ["1433", "3306", "5432"] # SQL Server, MySQL, PostgreSQL
     source_address_prefix      = var.create_app_subnet ? var.app_subnet_address_space : "VirtualNetwork"
     destination_address_prefix = "*"
   }
