@@ -21,7 +21,7 @@ resource "azurerm_virtual_network" "hub" {
   location            = var.location
   resource_group_name = azurerm_resource_group.hub_network.name
   address_space       = [var.hub_vnet_address_space]
-  
+
   tags = merge(
     var.common_tags,
     {
@@ -33,7 +33,7 @@ resource "azurerm_virtual_network" "hub" {
 
 # Gateway Subnet (for ExpressRoute/VPN)
 resource "azurerm_subnet" "gateway" {
-  name                 = "GatewaySubnet"  # Must be exactly this name
+  name                 = "GatewaySubnet" # Must be exactly this name
   resource_group_name  = azurerm_resource_group.hub_network.name
   virtual_network_name = azurerm_virtual_network.hub.name
   address_prefixes     = [var.gateway_subnet_address_space]
@@ -41,7 +41,7 @@ resource "azurerm_subnet" "gateway" {
 
 # Azure Firewall Subnet
 resource "azurerm_subnet" "firewall" {
-  name                 = "AzureFirewallSubnet"  # Must be exactly this name
+  name                 = "AzureFirewallSubnet" # Must be exactly this name
   resource_group_name  = azurerm_resource_group.hub_network.name
   virtual_network_name = azurerm_virtual_network.hub.name
   address_prefixes     = [var.firewall_subnet_address_space]
@@ -53,7 +53,7 @@ resource "azurerm_subnet" "shared_services" {
   resource_group_name  = azurerm_resource_group.hub_network.name
   virtual_network_name = azurerm_virtual_network.hub.name
   address_prefixes     = [var.shared_services_subnet_address_space]
-  
+
   private_endpoint_network_policies_enabled = false
 }
 
@@ -76,13 +76,13 @@ resource "azurerm_firewall" "hub" {
   resource_group_name = azurerm_resource_group.hub_network.name
   sku_name            = "AZFW_VNet"
   sku_tier            = var.firewall_sku_tier
-  
+
   ip_configuration {
     name                 = "firewall-ip-config"
     subnet_id            = azurerm_subnet.firewall.id
     public_ip_address_id = azurerm_public_ip.firewall[0].id
   }
-  
+
   tags = var.common_tags
 }
 
