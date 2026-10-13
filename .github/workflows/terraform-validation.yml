@@ -29,10 +29,7 @@ jobs:
           terraform_version: '1.9.8'
       - name: Check formatting (all Terraform)
         working-directory: .
-        run: |
-          terraform fmt -recursive
-          git diff -- '*.tf'
-          git diff --quiet -- '*.tf'
+        run: terraform fmt -check -recursive
       - name: Initialize without backend
         run: terraform init -backend=false -input=false
       - name: Validate Terraform reference
