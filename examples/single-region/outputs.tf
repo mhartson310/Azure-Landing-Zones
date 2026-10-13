@@ -31,10 +31,10 @@ output "log_analytics_workspace_id" {
 output "deployment_summary" {
   description = "Deployment summary"
   value = {
-    environment     = var.environment
-    location        = var.location
-    hub_vnet        = module.hub_network.hub_vnet_name
-    firewall_ip     = module.hub_network.firewall_private_ip
-    estimated_cost  = var.deploy_firewall ? "$1,400-2,000/month" : "$100-300/month"
+    environment    = var.environment
+    location       = var.location
+    hub_vnet       = module.hub_network.hub_vnet_name
+    firewall_ip    = module.hub_network.firewall_private_ip
+    cost_estimate  = "Not calculated; use current Azure prices and actual selected SKUs"
   }
 }
