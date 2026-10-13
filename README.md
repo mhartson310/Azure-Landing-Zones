@@ -4,6 +4,12 @@ A focused Azure landing-zone implementation demonstrating **hub-and-spoke networ
 
 > **Project status:** Reference implementation. No production deployment or live test result is claimed by this repository.
 
+## Automated checks
+
+[![Terraform checks](https://github.com/mhartson310/Azure-Landing-Zones/actions/workflows/terraform-validation.yml/badge.svg)](https://github.com/mhartson310/Azure-Landing-Zones/actions/workflows/terraform-validation.yml)
+
+Terraform formatting, initialization, and validation run in GitHub Actions. **This does not prove Azure deployment or security-control operation.**
+
 ## What this demonstrates
 
 - Infrastructure architecture decomposed into reusable hub and spoke modules
