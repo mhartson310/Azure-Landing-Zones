@@ -31,10 +31,10 @@ output "log_analytics_workspace_id" {
 output "deployment_summary" {
   description = "Deployment summary"
   value = {
-    environment    = var.environment
-    location       = var.location
-    hub_vnet       = module.hub_network.hub_vnet_name
-    firewall_ip    = module.hub_network.firewall_private_ip
-    cost_estimate  = "Not calculated; use current Azure prices and actual selected SKUs"
+    environment   = var.environment
+    location      = var.location
+    hub_vnet      = module.hub_network.hub_vnet_name
+    firewall_ip   = module.hub_network.firewall_private_ip
+    cost_estimate = "Not calculated; use current Azure prices and actual selected SKUs"
   }
 }
